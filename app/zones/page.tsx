@@ -6,16 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { getAllZones } from '@/content/zones'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generatePageMetadata } from '@/lib/seo'
+import { siteConfig } from '@/lib/config'
 import { MapPin, Users, Map } from 'lucide-react'
 
 export const revalidate = 86400 // ISR 24h
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Zones d\'intervention - Les jardins de vie',
-  description: 'Découvrez toutes nos zones d\'intervention : Paris, Boulogne-Billancourt, Issy-les-Moulineaux et bien d\'autres. Déplacement gratuit dans votre région.',
-  url: 'https://lesjardinsdevie.fr/zones'
-})
+export const metadata: Metadata = generatePageMetadata()
 
 export default function ZonesPage() {
   const zones = getAllZones()
@@ -31,7 +28,7 @@ export default function ZonesPage() {
                 Zones d&apos;intervention
               </h1>
               <p className="text-xl text-brand-text-2 max-w-3xl mx-auto">
-                Nous intervenons dans votre région avec déplacement gratuit.
+                Nous intervenons autour du Bassin de Thau avec déplacement gratuit.
                 Découvrez toutes les villes que nous desservons.
               </p>
             </div>
@@ -101,12 +98,12 @@ export default function ZonesPage() {
                 Votre ville n&apos;est pas listée ?
               </h2>
               <p className="text-lg text-brand-text-2 mb-8 max-w-2xl mx-auto">
-                Nous intervenons dans un rayon de 15km autour de Paris.
+                Nous intervenons dans un rayon de 15km autour de Balaruc-les-Bains.
                 Contactez-nous pour vérifier si nous pouvons nous déplacer chez vous.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:+33600000000"
+                  href={`tel:${siteConfig.tel}`}
                   className="inline-flex items-center justify-center px-8 py-3 bg-brand-primary text-white font-semibold rounded-xl hover:bg-brand-primary-600 transition-colors"
                 >
                   Appeler pour vérifier

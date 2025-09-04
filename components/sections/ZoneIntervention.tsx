@@ -1,11 +1,7 @@
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { MapPin } from 'lucide-react'
-
-const villes = [
-  'Paris', 'Boulogne-Billancourt', 'Issy-les-Moulineaux', 'Vanves',
-  'Malakoff', 'Clamart', 'Meudon', 'Sèvres', 'Chaville', 'Vélizy-Villacoublay'
-]
+import { siteConfig } from '@/lib/config'
 
 export default function ZoneIntervention() {
   return (
@@ -16,7 +12,7 @@ export default function ZoneIntervention() {
             Zones d&apos;intervention
           </h2>
           <p className="text-lg text-brand-text-2 max-w-2xl mx-auto">
-            Nous intervenons dans votre région avec déplacement gratuit
+            Nous intervenons autour du Bassin de Thau avec déplacement gratuit
           </p>
         </div>
 
@@ -31,7 +27,7 @@ export default function ZoneIntervention() {
             </div>
             
             <div className="grid grid-cols-2 gap-3">
-              {villes.map((ville, index) => (
+              {siteConfig.targetArea.map((ville, index) => (
                 <div
                   key={index}
                   className="flex items-center space-x-2 text-brand-text-2"
@@ -44,7 +40,7 @@ export default function ZoneIntervention() {
 
             <div className="mt-6 p-4 bg-brand-primary-100 rounded-card">
               <p className="text-brand-text text-sm">
-                <strong>Déplacement gratuit</strong> dans un rayon de 15km autour de Paris.
+                <strong>Déplacement gratuit</strong> dans un rayon de 15km autour de Balaruc-les-Bains.
                 Au-delà, frais de déplacement selon distance.
               </p>
             </div>

@@ -6,19 +6,19 @@ import { Star } from 'lucide-react'
 const avis = [
   {
     nom: 'Marie L.',
-    ville: 'Paris',
+    ville: 'Sète',
     note: 5,
     commentaire: 'Service impeccable ! Mon jardin n\'a jamais été aussi beau. Intervention rapide et professionnelle. Je recommande vivement.',
   },
   {
     nom: 'Jean-Pierre M.',
-    ville: 'Boulogne-Billancourt',
+    ville: 'Frontignan',
     note: 5,
     commentaire: 'Excellent rapport qualité-prix. L\'équipe est très professionnelle et respectueuse. Mon jardin est maintenant parfaitement entretenu.',
   },
   {
     nom: 'Sophie D.',
-    ville: 'Issy-les-Moulineaux',
+    ville: 'Balaruc-les-Bains',
     note: 4,
     commentaire: 'Très satisfaite du service. Ponctualité, propreté et résultat au rendez-vous. Je fais appel à eux régulièrement maintenant.',
   },

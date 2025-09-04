@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { siteConfig } from './config'
 
 export interface LocalBusinessData {
   name: string
@@ -103,29 +104,88 @@ export function generateMetadata({
 }
 
 export const defaultBusinessData: LocalBusinessData = {
-  name: "Les jardins de vie",
-  tel: "+33600000000",
-  street: "123 Rue de la Nature",
-  city: "Paris",
-  postal: "75000",
-  lat: 48.8566,
-  lng: 2.3522,
-  url: "https://lesjardinsdevie.fr",
-  sameAs: [
-    "https://www.google.com/maps/place/Les+jardins+de+vie",
-    "https://www.facebook.com/lesjardinsdevie",
-  ],
-  areaServed: [
-    "Paris",
-    "Boulogne-Billancourt",
-    "Issy-les-Moulineaux",
-    "Vanves",
-    "Malakoff",
-    "Clamart",
-    "Meudon",
-    "Sèvres",
-    "Chaville",
-    "Vélizy-Villacoublay"
-  ],
-  hours: "Mo-Fr 08:00-18:00,Sa 08:00-16:00"
+  name: siteConfig.name,
+  tel: siteConfig.tel,
+  street: siteConfig.address.split(' ').slice(0, -2).join(' '), // Extrait la rue de l'adresse complète
+  city: siteConfig.baseCity,
+  postal: siteConfig.basePostal,
+  lat: siteConfig.lat,
+  lng: siteConfig.lng,
+  url: siteConfig.url,
+  sameAs: siteConfig.sameAs,
+  areaServed: siteConfig.targetArea,
+  hours: siteConfig.hours
 }
+
+export function generatePageMetadata(ville?: string) {
+  const title = ville 
+    ? siteConfig.titleTemplate.replace('{ville}', ville)
+    : siteConfig.titleTemplate.replace(' | Jardinier à {ville} – Bassin de Thau', '')
+  
+  const description = ville
+    ? siteConfig.descriptionTemplate.replace('{ville}', ville)
+    : siteConfig.descriptionTemplate.replace(' à {ville}', '')
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: ville ? `${siteConfig.url}/zones/${ville}` : siteConfig.url,
+      images: [
+        {
+          url: '/og-image.jpg',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-image.jpg'],
+    },
+    alternates: {
+      canonical: ville ? `${siteConfig.url}/zones/${ville}` : siteConfig.url,
+    },
+  }
+}
+
+export const serviceJsonLd = (serviceName: string) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: serviceName,
+  provider: {
+    "@type": "HomeAndConstructionBusiness",
+    name: siteConfig.name,
+    telephone: siteConfig.tel,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.address.split(' ').slice(0, -2).join(' '),
+      addressLocality: siteConfig.baseCity,
+      postalCode: siteConfig.basePostal,
+      addressCountry: "FR"
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteConfig.lat,
+      longitude: siteConfig.lng
+    },
+    areaServed: siteConfig.targetArea,
+    openingHours: siteConfig.hours,
+    url: siteConfig.url,
+    sameAs: siteConfig.sameAs
+  },
+  areaServed: siteConfig.targetArea,
+  description: `Service d'${serviceName.toLowerCase()} proposé par ${siteConfig.name} dans le Bassin de Thau.`,
+  serviceType: serviceName,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+    description: "Devis gratuit"
+  }
+})

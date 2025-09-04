@@ -11,7 +11,8 @@ import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { getZoneBySlug, getAllZones } from '@/content/zones'
-import { generateMetadata as generateSEOMetadata, defaultBusinessData, localBusinessJsonLd } from '@/lib/seo'
+import { generatePageMetadata, defaultBusinessData, localBusinessJsonLd } from '@/lib/seo'
+import { siteConfig } from '@/lib/config'
 import { MapPin, Users, Check, ArrowLeft } from 'lucide-react'
 
 export const revalidate = 86400 // ISR 24h
@@ -38,12 +39,7 @@ export async function generateMetadata({ params }: ZonePageProps): Promise<Metad
     }
   }
 
-  return generateSEOMetadata({
-    title: `Jardinier & petits travaux près de ${zone.ville}`,
-    description: `Service d'entretien de jardins à ${zone.ville}. Élagage, tonte, haies, débroussaillage, petites maçonneries. Intervention rapide, devis gratuit.`,
-    url: `https://lesjardinsdevie.fr/zones/${zone.slug}`,
-    ville: zone.ville
-  })
+  return generatePageMetadata(zone.ville)
 }
 
 export default function ZonePage({ params }: ZonePageProps) {
@@ -87,9 +83,9 @@ export default function ZonePage({ params }: ZonePageProps) {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
-                <h2 className="font-display text-3xl font-bold text-brand-text mb-6">
-                  Intervention à {zone.ville}
-                </h2>
+                <h1 className="font-display text-3xl font-bold text-brand-text mb-6">
+                  Jardinier à {zone.ville}
+                </h1>
                 
                 <div className="prose prose-lg max-w-none mb-8">
                   <p className="text-lg text-brand-text-2">
@@ -134,7 +130,7 @@ export default function ZonePage({ params }: ZonePageProps) {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild size="lg">
-                    <a href="tel:+33600000000">
+                    <a href={`tel:${siteConfig.tel}`}>
                       Appeler maintenant
                     </a>
                   </Button>

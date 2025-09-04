@@ -4,16 +4,13 @@ import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/forms/ContactForm'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generatePageMetadata } from '@/lib/seo'
+import { siteConfig } from '@/lib/config'
 import { MapPin, Clock, Phone, MessageCircle } from 'lucide-react'
 
 export const revalidate = 86400 // ISR 24h
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Contact - Demander un devis gratuit',
-  description: 'Contactez Les jardins de vie pour un devis gratuit. Entretien de jardin, élagage, tonte, débroussaillage. Intervention rapide dans votre région.',
-  url: 'https://lesjardinsdevie.fr/contact'
-})
+export const metadata: Metadata = generatePageMetadata()
 
 export default function ContactPage() {
   return (
@@ -60,10 +57,10 @@ export default function ContactPage() {
                           Appelez-nous directement pour une intervention rapide
                         </p>
                         <a 
-                          href="tel:+33600000000" 
+                          href={`tel:${siteConfig.tel}`} 
                           className="text-brand-primary font-semibold hover:underline"
                         >
-                          +33 6 00 00 00 00
+                          {siteConfig.tel}
                         </a>
                       </div>
                     </div>
@@ -78,7 +75,7 @@ export default function ContactPage() {
                           Envoyez-nous un message pour un devis ou des questions
                         </p>
                         <a 
-                          href="https://wa.me/33600000000?text=Bonjour, je souhaite obtenir un devis pour l'entretien de mon jardin" 
+                          href={`https://wa.me/${siteConfig.tel.replace('+', '')}?text=Bonjour, je souhaite obtenir un devis pour l'entretien de mon jardin`} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-brand-primary font-semibold hover:underline"
@@ -95,8 +92,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold text-brand-text mb-1">Adresse</h3>
                         <p className="text-brand-text-2">
-                          123 Rue de la Nature<br />
-                          75000 Paris, France
+                          {siteConfig.address}
                         </p>
                       </div>
                     </div>
@@ -108,9 +104,8 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold text-brand-text mb-1">Horaires</h3>
                         <div className="text-brand-text-2 space-y-1">
-                          <p>Lundi - Vendredi : 8h00 - 18h00</p>
-                          <p>Samedi : 8h00 - 16h00</p>
-                          <p>Dimanche : Fermé</p>
+                          <p>{siteConfig.hours}</p>
+                          <p>SIRET : {siteConfig.siret}</p>
                         </div>
                         <p className="text-sm text-brand-text-2 mt-2">
                           <strong>Urgences :</strong> Disponible 7j/7

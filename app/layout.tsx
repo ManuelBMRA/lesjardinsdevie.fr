@@ -17,11 +17,11 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Les jardins de vie - Jardinier & petits travaux',
+    default: 'Les jardins de vie | Jardinier & petits travaux près de Sète et autour du Bassin de Thau',
     template: '%s | Les jardins de vie',
   },
-  description: 'Élagage, tonte, haies, débroussaillage, petites maçonneries. Intervention rapide, devis gratuit. Déplacement gratuit dans votre région.',
-  keywords: ['jardinier', 'entretien jardin', 'élagage', 'tonte', 'haies', 'débroussaillage', 'petits travaux'],
+  description: 'Élagage, tonte, haies, débroussaillage, petits travaux — intervention rapide depuis Balaruc-les-Bains, devis gratuit.',
+  keywords: ['jardinier', 'entretien jardin', 'élagage', 'tonte', 'haies', 'débroussaillage', 'petits travaux', 'Sète', 'Bassin de Thau', 'Balaruc-les-Bains'],
   authors: [{ name: 'Les jardins de vie' }],
   creator: 'Les jardins de vie',
   publisher: 'Les jardins de vie',
@@ -39,21 +39,21 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: 'https://lesjardinsdevie.fr',
     siteName: 'Les jardins de vie',
-    title: 'Les jardins de vie - Jardinier & petits travaux',
-    description: 'Élagage, tonte, haies, débroussaillage, petites maçonneries. Intervention rapide, devis gratuit.',
+    title: 'Les jardins de vie | Jardinier & petits travaux près de Sète et autour du Bassin de Thau',
+    description: 'Élagage, tonte, haies, débroussaillage, petits travaux — intervention rapide depuis Balaruc-les-Bains, devis gratuit.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Les jardins de vie - Jardinier & petits travaux',
+        alt: 'Les jardins de vie - Jardinier & petits travaux près de Sète et autour du Bassin de Thau',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Les jardins de vie - Jardinier & petits travaux',
-    description: 'Élagage, tonte, haies, débroussaillage, petites maçonneries. Intervention rapide, devis gratuit.',
+    title: 'Les jardins de vie | Jardinier & petits travaux près de Sète et autour du Bassin de Thau',
+    description: 'Élagage, tonte, haies, débroussaillage, petits travaux — intervention rapide depuis Balaruc-les-Bains, devis gratuit.',
     images: ['/og-image.jpg'],
   },
   robots: {

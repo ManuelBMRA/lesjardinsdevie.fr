@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
+import { siteConfig } from '@/lib/config'
 
 export default function Footer() {
   return (
@@ -14,16 +15,15 @@ export default function Footer() {
                 Les jardins de vie
               </h3>
               <div className="space-y-2 text-sm">
-                <p>123 Rue de la Nature</p>
-                <p>75000 Paris, France</p>
+                <p>{siteConfig.address}</p>
                 <p>
-                  <a href="tel:+33600000000" className="hover:text-brand-ivory transition-colors">
-                    +33 6 00 00 00 00
+                  <a href={`tel:${siteConfig.tel}`} className="hover:text-brand-ivory transition-colors">
+                    {siteConfig.tel}
                   </a>
                 </p>
                 <p>
-                  <a href="mailto:contact@lesjardinsdevie.fr" className="hover:text-brand-ivory transition-colors">
-                    contact@lesjardinsdevie.fr
+                  <a href={`mailto:${siteConfig.email}`} className="hover:text-brand-ivory transition-colors">
+                    {siteConfig.email}
                   </a>
                 </p>
               </div>
@@ -53,7 +53,7 @@ export default function Footer() {
                 Informations légales
               </h3>
               <div className="space-y-2 text-sm">
-                <p>SIRET: 123 456 789 00012</p>
+                <p>SIRET: {siteConfig.siret}</p>
                 <p>Assurance RC Pro</p>
                 <p>Déclaré en activité</p>
               </div>

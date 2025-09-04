@@ -6,16 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { getAllServices } from '@/content/services'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generatePageMetadata } from '@/lib/seo'
+import { siteConfig } from '@/lib/config'
 import { Scissors, TreePine, Trash2, Wrench, Leaf, Hammer } from 'lucide-react'
 
 export const revalidate = 86400 // ISR 24h
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Nos services - Entretien jardin & petits travaux',
-  description: 'Découvrez tous nos services d\'entretien de jardin : tonte, élagage, débroussaillage, petits travaux, plantation et maçonnerie légère.',
-  url: 'https://lesjardinsdevie.fr/services'
-})
+export const metadata: Metadata = generatePageMetadata()
 
 const iconMap = {
   Scissors,
@@ -98,7 +95,7 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:+33600000000"
+                  href={`tel:${siteConfig.tel}`}
                   className="inline-flex items-center justify-center px-8 py-3 bg-brand-primary text-white font-semibold rounded-xl hover:bg-brand-primary-600 transition-colors"
                 >
                   Appeler maintenant

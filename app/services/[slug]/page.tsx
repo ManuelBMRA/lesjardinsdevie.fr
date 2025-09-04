@@ -8,7 +8,8 @@ import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { getServiceBySlug, getAllServices } from '@/content/services'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { generatePageMetadata, serviceJsonLd } from '@/lib/seo'
+import { siteConfig } from '@/lib/config'
 import { Scissors, TreePine, Trash2, Wrench, Leaf, Hammer, Check, ArrowLeft } from 'lucide-react'
 
 export const revalidate = 86400 // ISR 24h
@@ -44,11 +45,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     }
   }
 
-  return generateSEOMetadata({
-    title: `${service.title} - Les jardins de vie`,
-    description: service.description,
-    url: `https://lesjardinsdevie.fr/services/${service.slug}`
-  })
+  return generatePageMetadata()
 }
 
 export default function ServicePage({ params }: ServicePageProps) {
@@ -59,9 +56,14 @@ export default function ServicePage({ params }: ServicePageProps) {
   }
 
   const Icon = iconMap[service.icon as keyof typeof iconMap]
+  const jsonLd = serviceJsonLd(service.title)
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         <Section className="bg-brand-surface">
@@ -102,7 +104,7 @@ export default function ServicePage({ params }: ServicePageProps) {
 
                 <div className="flex flex-col sm:flex-row gap-4 mt-8">
                   <Button asChild size="lg">
-                    <a href="tel:+33600000000">
+                    <a href={`tel:${siteConfig.tel}`}>
                       Appeler pour un devis
                     </a>
                   </Button>

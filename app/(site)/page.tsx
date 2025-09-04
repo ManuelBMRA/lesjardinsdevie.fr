@@ -6,16 +6,11 @@ import ServicesGrid from '@/components/sections/ServicesGrid'
 import Avis from '@/components/sections/Avis'
 import ZoneIntervention from '@/components/sections/ZoneIntervention'
 import ContactCard from '@/components/sections/ContactCard'
-import { generateMetadata as generateSEOMetadata, defaultBusinessData, localBusinessJsonLd } from '@/lib/seo'
+import { generatePageMetadata, defaultBusinessData, localBusinessJsonLd } from '@/lib/seo'
 
 export const revalidate = 86400 // ISR 24h
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: 'Les jardins de vie - Jardinier & petits travaux',
-  description: 'Élagage, tonte, haies, débroussaillage, petites maçonneries. Intervention rapide, devis gratuit. Déplacement gratuit dans votre région.',
-  url: 'https://lesjardinsdevie.fr',
-  ville: 'Paris'
-})
+export const metadata: Metadata = generatePageMetadata()
 
 export default function HomePage() {
   const jsonLd = localBusinessJsonLd(defaultBusinessData)
@@ -28,7 +23,7 @@ export default function HomePage() {
       />
       <Header />
       <main>
-        <Hero ville="Paris" />
+        <Hero ville="Sète" />
         <ServicesGrid />
         <Avis />
         <ZoneIntervention />
