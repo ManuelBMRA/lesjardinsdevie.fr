@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-brand-surface text-brand-text;
+  }
+  
+  * {
+    @apply border-brand-line;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-xl bg-brand-primary px-6 py-3 font-semibold text-white shadow-soft transition hover:bg-brand-primary-600 focus:outline-none focus:ring-2 focus:ring-brand-accent;
+  }
+  
+  .btn-secondary {
+    @apply rounded-xl border border-brand-secondary px-6 py-3 font-semibold text-brand-secondary transition hover:bg-brand-ivory focus:outline-none focus:ring-2 focus:ring-brand-accent;
+  }
+  
+  .card {
+    @apply rounded-card bg-white p-6 shadow-soft;
+  }
+  
+  .section-padding {
+    @apply py-16;
+  }
+  
+  .container-custom {
+    @apply mx-auto max-w-6xl px-6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Respecter les préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
