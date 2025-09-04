@@ -9,7 +9,7 @@ import { Phone, Mail, MessageCircle, CheckCircle, AlertCircle } from 'lucide-rea
 interface FormState {
   success: boolean
   error: string | null
-  fieldErrors?: Record<string, string[]>
+  fieldErrors?: Record<string, string[] | undefined>
 }
 
 export default function ContactForm() {
