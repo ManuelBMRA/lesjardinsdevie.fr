@@ -113,7 +113,7 @@ export const defaultBusinessData: LocalBusinessData = {
   lng: siteConfig.lng,
   url: siteConfig.url,
   sameAs: [...siteConfig.sameAs],
-  areaServed: siteConfig.targetArea,
+  areaServed: [...siteConfig.targetArea],
   hours: siteConfig.hours
 }
 
@@ -174,12 +174,12 @@ export const serviceJsonLd = (serviceName: string) => ({
       latitude: siteConfig.lat,
       longitude: siteConfig.lng
     },
-    areaServed: siteConfig.targetArea,
+    areaServed: [...siteConfig.targetArea],
     openingHours: siteConfig.hours,
     url: siteConfig.url,
     sameAs: [...siteConfig.sameAs]
   },
-  areaServed: siteConfig.targetArea,
+  areaServed: [...siteConfig.targetArea],
   description: `Service d'${serviceName.toLowerCase()} proposé par ${siteConfig.name} dans le Bassin de Thau.`,
   serviceType: serviceName,
   offers: {
